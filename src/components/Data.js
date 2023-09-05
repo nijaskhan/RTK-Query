@@ -3,13 +3,14 @@ import { useGetAllProductsQuery, useGetProductQuery } from '../features/apiSlice
 
 const ProductDatas = () => {
     const { data, isLoading, isError } = useGetAllProductsQuery();
-    console.log(data);
     const { data: user } = useGetProductQuery('1');
-
 
     return (
         <>
             <>
+                <h2 style={{textDecoration: 'underline'}}>
+                    List of Users
+                </h2>
                 {
                     isError ? (
                         <h3>Oh no, there was an error</h3>

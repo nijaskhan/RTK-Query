@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hello ReactJS</h1>
+        <h1>RTK Query - Tutorials</h1>
         <ProductDatas />
       </header>
     </div>
