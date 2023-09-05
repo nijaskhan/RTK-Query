@@ -1,21 +1,31 @@
-import React from 'react'
-import { useGetAllProductsQuery } from '../features/apiSlice';
+import React from 'react';
+import { useGetAllProductsQuery, useGetProductQuery } from '../features/apiSlice';
 
 const ProductDatas = () => {
-    const { data } = useGetAllProductsQuery();
+    const { data, isLoading, isError } = useGetAllProductsQuery();
     console.log(data);
+    const { data: user } = useGetProductQuery('1');
+
 
     return (
         <>
-            {
-                data ? data.map((product) => (
-                    <React.Fragment key={product.id}>
-                        <ul>{product.name}</ul>
+            <>
+                {isError ? (
+                    <h3>Oh no, there was an error</h3>
+                ) : isLoading ? (
+                    <h1>Loading...</h1>
+                ) : data ? data.map(user => (
+                    <React.Fragment key={user.id}>
+                        <ul>{user.name}</ul>
+                        <li>{user.email}</li>
                     </React.Fragment>
-                )) : <div>No products 😥</div>
+                )) : null}
+            </>
+            {
+                user ? <h2>{user.name}</h2> : null
             }
         </>
     )
 }
 
-export default ProductDatas
+export default ProductDatas;
