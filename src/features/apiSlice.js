@@ -22,7 +22,7 @@ export const productsApi = createApi({
         deleteProduct: builder.mutation({
             query: (productId) => ({
                 url: `api/admin/delete-user/${productId}`,
-                method: 'GET'
+                method: 'GET' // use Delete method to DELETE instead of GET
             })
         })
     })
