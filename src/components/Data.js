@@ -1,10 +1,13 @@
 import React from 'react';
-import { useGetAllProductsQuery, useCreateProductMutation } from '../features/apiSlice';
+import { useGetAllProductsQuery, useCreateProductMutation, useDeleteProductMutation } from '../features/apiSlice';
 
 const ProductDatas = () => {
     const { refetch: usersRefetch, data, isLoading, isError } = useGetAllProductsQuery();
+    console.log(data, "users");
     // const { data: user } = useGetProductQuery('1');
     const [createProduct] = useCreateProductMutation();
+    const [deleteProduct] = useDeleteProductMutation();
+    
     const createUser = () => {
         createProduct({
             name: 'sivasankaran',
@@ -13,6 +16,12 @@ const ProductDatas = () => {
             password: 'sivasankaran'
         }).then((res) => {
             console.log(res, 'response');
+            usersRefetch();
+        })
+    }
+    const deleteUser = (productId) => () => {
+        deleteProduct(productId).then((res) => {
+            console.log(res, 'delete response');
             usersRefetch();
         })
     }
@@ -31,6 +40,7 @@ const ProductDatas = () => {
                     <React.Fragment key={user._id}>
                         <ul>{user.name}</ul>
                         <li>{user.email}</li>
+                        <button onClick={deleteUser(user._id)}>Delete {user.name}</button>
                     </React.Fragment>
                 )) : null
             }
