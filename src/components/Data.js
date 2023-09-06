@@ -7,11 +7,11 @@ const ProductDatas = () => {
     // const { data: user } = useGetProductQuery('1');
     const [createProduct] = useCreateProductMutation();
     const [deleteProduct] = useDeleteProductMutation();
-    
+
     const createUser = () => {
         createProduct({
-            name: 'sivasankaran',
-            email: 'sivasankaran@gmail.com',
+            name: 'soman',
+            email: 'soman@gmail.com',
             mobile: 3467982312,
             password: 'sivasankaran'
         }).then((res) => {
@@ -45,7 +45,7 @@ const ProductDatas = () => {
                 )) : null
             }
             <div style={{ marginBottom: '2rem', marginTop: '2rem' }}>
-                <button onClick={createUser}>create user</button>
+                <button onClick={createUser} style={{backgroundColor: 'red'}}>create user</button>
             </div>
         </>
     )
